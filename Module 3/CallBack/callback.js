@@ -1,4 +1,5 @@
 const fs = require('fs')
+const { resolve } = require('path')
 //Without CallBack Function
 
 // function add (a, b){
@@ -76,19 +77,19 @@ doMath(a, b, (results) => {
 
 //callback abstraction
 
-function fetchData(callback){
-    setTimeout(() => {
-        const data = {message: "Data Fetch Successfully"}
-        callback(null, data)
-    }, 3000)
-}
+// function fetchData(callback){
+//     setTimeout(() => {
+//         const data = {message: "Data Fetch Successfully"}
+//         callback(null, data)
+//     }, 3000)
+// }
 
-function handleData(err, data){
-    if (err) {console.log(err)}
-    else {console.log(data)}
-}
+// function handleData(err, data){
+//     if (err) {console.log(err)}
+//     else {console.log(data)}
+// }
 
-fetchData(handleData)
+// fetchData(handleData)
 
 //callback chaining or hell => inversion of control => pyramid of doom
 
@@ -103,18 +104,40 @@ fetchData(handleData)
 //     })
 // })
 
-function timeToDelay(sec, callback){
-    setTimeout(callback, sec *2000)
-}
+// function timeToDelay(sec, callback){
+//     setTimeout(callback, sec *2000)
+// }
 
-console.log("Start Time")
+ console.log("Start Time")
 
-timeToDelay(2, () => {
-    console.log("Two Seconds Delay")
-    timeToDelay(4, () => {
-        console.log("Four Seconds Delay")
-        timeToDelay(6, () => {
-            console.log("Six Seconds Delay")
-        })
-    })
+// timeToDelay(2, () => {
+//     console.log("Two Seconds Delay")
+//     timeToDelay(4, () => {
+//         console.log("Four Seconds Delay")
+//         timeToDelay(6, () => {
+//             console.log("Six Seconds Delay")
+//         })
+//     })
+// })
+
+//promise
+
+const text = 'hello123'
+
+const promise = new Promise((resolve, reject) => {
+    if (text == 'hello'){
+        resolve("There is a text")
+    } else {
+        reject("There is no text")
+    }
 })
+
+console.log(promise)
+
+//promise chaining => .then() and error => .catch()
+
+createOrder(cart)
+    .then((orderId) => proceedToPayment(orderId))
+    .then((paymentInfo) => showOrderSummary(paymentInfo))
+    .then((paymentInfo) => updateOrderSection(paymentInfo))
+    .then((paymentInfo) => updateWallet(paymentInfo))
