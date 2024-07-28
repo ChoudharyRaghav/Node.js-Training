@@ -17,7 +17,7 @@ const mongoUrl = 'mongodb://localhost:27017/';
 // Database Name
 //const dbName = 'NodeJs_Training';
 
-// Use connect method to connect to the server
+// Use connect method to connect to the mongodb server
 MongoClient.connect(mongoUrl, (err, client) => {
   if (err) throw err
   const db = client.db("NodeJs_Training")
